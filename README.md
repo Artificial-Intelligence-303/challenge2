@@ -12,18 +12,13 @@ Hollywood turns out to be a short chain of films away from Kevin Bacon, and
 this challenge is you finding those chains in a graph of six thousand real
 people.
 
-You are going to write **one** search algorithm. Not two. The difference
-between breadth first and depth first search is not two algorithms, it is one
-algorithm handed a different container, and you will only really believe that
-once the same function has produced both.
+You are going to write **one** search algorithm. Breadth first and depth
+first search are the same algorithm handed a different container, and you
+will only really believe that once the same function has produced both.
 
 Then you will find out that the two answers are not equally good, and that
 the standard formula for what search costs does not describe what your code
 actually did.
-
-**This is a 90 minute assignment.** There are two things to write and they
-are both short. If you are an hour in and have not run anything, come to
-office hours rather than pushing on.
 
 ## Course learning outcomes
 
