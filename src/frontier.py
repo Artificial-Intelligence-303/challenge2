@@ -147,7 +147,9 @@ class StackFrontier(Frontier):
             from `self.nodes`.
         """
         # TODO: one line. Which end of self.nodes does a stack take from?
-        raise NotImplementedError("StackFrontier.choose is yours to write")
+        raise NotImplementedError(
+            "you have to implement StackFrontier.choose first"
+        )
 
 
 class QueueFrontier(Frontier):
@@ -161,4 +163,6 @@ class QueueFrontier(Frontier):
             from `self.nodes`.
         """
         # TODO: one line, and only one character different from the other.
-        raise NotImplementedError("QueueFrontier.choose is yours to write")
+        raise NotImplementedError(
+            "you have to implement QueueFrontier.choose first"
+        )

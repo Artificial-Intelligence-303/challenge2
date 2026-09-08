@@ -92,4 +92,4 @@ def search(problem: Problem, frontier: Frontier) -> SearchResult:
     """
     # TODO: write the search loop. The README has its shape, and the two
     # details worth getting right rather than guessing at.
-    raise NotImplementedError("search is yours to write")
+    raise NotImplementedError("you have to implement search first")
