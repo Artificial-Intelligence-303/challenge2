@@ -60,8 +60,9 @@ Two details are worth getting right rather than guessing at.
 
 - **Test for the goal when a node comes out of the frontier, not when it goes
   in.** Breadth first search finds the same path either way on this problem,
-  so nothing will fail today if you get it wrong. It stops being true in Week
-  4, and it is a hard bug to find later.
+  so the difference shows up in your counts rather than in your answer. It
+  stops being a difference in counts in Week 4, and it is a hard bug to find
+  later.
 - **Both membership checks matter.** Skipping "already explored" makes the
   search loop forever, because this graph is full of cycles. Skipping
   "already waiting in the frontier" does not break correctness, but
