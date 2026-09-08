@@ -74,9 +74,22 @@ bookkeeping, not search.
 
 Most of the tests run on **the eight node graph from Tuesday's activity**, the
 one you traced by hand. Breadth first expands 4 nodes and returns a 2 step
-path. Depth first expands 7 and returns a 5 step path. If a test fails you
-already know what the right answer looks like, and you can compare your
-frontier against the one on your own page.
+path. Depth first expands 7 and returns a 5 step path. Two commands check
+your code against that, once you have written it:
+
+```
+uv run pytest -k expansion_counts    the two numbers, checked
+uv run python src/main.py lecture    both searches, one row per step
+```
+
+When that test fails it prints the count you actually got, with the path and
+the peak frontier beside it, so you can see which of the three went wrong.
+
+The `lecture` run prints the five columns you filled in by hand: the frontier
+before each step, the node that came out, what it added, and the frontier
+after. It is your own search running, not a recording, so set it beside your
+page and find the first row where the two disagree. That row is where the bug
+is.
 
 ## The data
 
@@ -97,6 +110,7 @@ they never worked.
 ```
 uv run python src/main.py         the full run, on data/medium
 uv run python src/main.py small   the sixteen person set, for debugging
+uv run python src/main.py lecture Tuesday's graph, one row per step
 uv run pytest                     run the tests
 uv run ruff check src tests       check your style
 uv run ruff format src tests      fix most style problems automatically
