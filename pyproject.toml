@@ -1,0 +1,50 @@
+[project]
+name = "challenge-02-search"
+version = "1.0.0"
+description = "CMPSC 303 Challenge 2: uninformed search, and what it costs."
+requires-python = ">=3.11"
+dependencies = [
+    "gatorgrade",
+    "mypy>=1.11",
+    "pytest",
+    "pytest-timeout",
+    "ruff",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+# Every test here finishes in well under a second. A test that runs
+# for ten is not slow, it is looping: the usual cause is a search
+# that adds states it has already explored. Fail with that message
+# rather than hanging with none.
+timeout = 10
+
+[tool.mypy]
+ignore_missing_imports = true
+mypy_path = "src"
+
+# Style is checked against the Google Python Style Guide:
+# https://google.github.io/styleguide/pyguide.html
+# 80 character lines (3.2), Google-style docstring sections (3.8.3),
+# lower_with_under functions and CAPS_WITH_UNDER constants (3.16.4),
+# imports grouped and at the top of the file (3.13).
+[tool.ruff]
+line-length = 80
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors, includes line length
+    "W",   # pycodestyle warnings, includes trailing whitespace
+    "F",   # pyflakes, unused imports and names
+    "I",   # import ordering
+    "D",   # docstring conventions
+    "N",   # naming conventions
+]
+ignore = [
+    "D203",  # conflicts with D211, which ruff prefers
+    "D213",  # conflicts with D212, which matches the Google convention
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"

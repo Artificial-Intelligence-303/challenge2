@@ -1,0 +1,53 @@
+name: Verbal Check
+description: The short spoken check on a challenge, done in lab with the instructor.
+title: "Challenge 2 Verbal Check"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Filled in by the instructor during lab. The student answers two or three
+        questions about their own code **without looking at it**. This is a
+        check on understanding, not a presentation.
+  - type: input
+    attributes:
+      label: Student
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Track measured
+      options:
+        - "Mazes"
+        - "Movie graph"
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: The code works
+      description: Confirmed before the conversation starts.
+      options:
+        - label: The submitted code runs
+        - label: The automated checks were run and the results reviewed
+  - type: checkboxes
+    attributes:
+      label: Understanding
+      description: Check what the student explained correctly, unprompted.
+      options:
+        - label: Says what changes when pop() becomes pop(0), in terms of which node leaves the frontier, not in terms of the algorithm's name
+        - label: Explains why breadth first search finding a shortest path follows from the order the frontier returns nodes
+        - label: Names the line responsible for the gap between the measured expansions and the b^d bound, and says what the bound counts that their search did not
+        - label: Explains why the breadth first frontier stays small on a grid, in terms of its shape
+        - label: Explains a design choice in their own code without reading it
+  - type: dropdown
+    attributes:
+      label: Outcome
+      options:
+        - "Passed: explained their own work clearly"
+        - "Passed with gaps: correct code, shaky explanation, follow up next lab"
+        - "Not yet: could not explain the submitted code, revisit required"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Notes
+      description: What to follow up on, and anything worth remembering for the next challenge.

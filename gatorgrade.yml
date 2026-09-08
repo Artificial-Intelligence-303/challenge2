@@ -1,0 +1,136 @@
+# Automated checks for Challenge 2. Run them yourself with:
+#
+#     uv run gatorgrade --config gatorgrade.yml
+#
+# These are the same checks that run on GitHub when you push. Results are
+# preliminary: the final grade is the instructor's call, not the autograder's.
+
+- description: "[FRONTIER] A stack returns the node added most recently"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_stack_returns_the_most_recent_node
+
+- description: "[FRONTIER] A queue returns the node added earliest"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_queue_returns_the_oldest_node
+
+- description: "[FRONTIER] Choosing a node actually removes it from the frontier"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_choose_actually_removes_the_node
+
+- description: "[FRONTIER] Removing every node empties the frontier"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_draining_a_frontier_leaves_it_empty
+
+- description: "[SEARCH] Finds the goal on the graph from Tuesday's activity"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_search_finds_the_goal
+
+- description: "[SEARCH] Every step on the returned path is a legal move"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_the_path_is_a_real_walk
+
+- description: "[SEARCH] The actions line up with the states they connect"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_actions_line_up_with_states
+
+- description: "[SEARCH] Breadth first finds the two step path, S to A to G"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_breadth_first_finds_the_shortest_path
+
+- description: "[SEARCH] Depth first finds the five step path, the long way round"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_depth_first_finds_the_long_way_round
+
+- description: "[SEARCH] Expansion counts match the hand trace, 4 and 7"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_expansion_counts_match_the_hand_trace
+
+- description: "[SEARCH] No state is ever expanded twice"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_no_state_is_expanded_twice
+
+- description: "[SEARCH] The peak frontier size is tracked"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_max_frontier_is_tracked
+
+- description: "[SEARCH] A goal that cannot be reached is reported, not crashed on"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_unreachable_goal_is_reported_not_crashed_on
+
+- description: "[SEARCH] Searching from a node to itself is zero steps"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_start_that_is_already_the_goal
+
+- description: "[DATA] The search runs on the real IMDb data"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_runs_on_the_real_dataset
+
+- description: "[DATA] Breadth first and depth first disagree on the medium dataset"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_breadth_first_beats_depth_first_on_real_data
+
+- description: "[DATA] The search works on any problem, not just the movie graph"
+  check: ExecuteCommand
+  options:
+    command: uv run pytest tests/test_search.py::test_search_does_not_care_what_it_is_searching
+
+- description: "[STYLE] Code follows the Google Python style guide"
+  check: ExecuteCommand
+  options:
+    command: uv run ruff check src tests
+
+- description: "[STYLE] Type annotations check out"
+  check: ExecuteCommand
+  options:
+    command: uv run mypy src tests
+
+- src/search.py:
+  - description: "[STYLE] No unfinished TODO markers are left in the search loop"
+    check: MatchFileFragment
+    options:
+      fragment: "TODO"
+      count: 0
+      exact: true
+  - description: "[STYLE] The search loop carries at least 3 comments explaining your reasoning"
+    check: MatchFileFragment
+    options:
+      fragment: "#"
+      count: 3
+      exact: false
+
+- src/frontier.py:
+  - description: "[STYLE] No unfinished TODO markers are left in the frontier classes"
+    check: MatchFileFragment
+    options:
+      fragment: "TODO"
+      count: 0
+      exact: true
+
+- docs/summary.md:
+  - description: "[REFLECTION] The reflection has no TODO markers left in it"
+    check: MatchFileFragment
+    options:
+      fragment: "TODO"
+      count: 0
+      exact: true
+  - description: "[REFLECTION] The reflection meets the 300 word minimum"
+    check: CountFileWords
+    options:
+      count: 300
+      exact: false
